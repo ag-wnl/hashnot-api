@@ -15,7 +15,9 @@ class Hashnot(models.Model):
     type = models.CharField(max_length=100, choices =   (('Programmer', 'Programmer'), ('Developer', 'Developer')))
     date_created = models.DateTimeField(auto_now=True)
     fav_techstack = models.TextField(default='None')
-    community_respect = models.IntegerField(default = 100)
+    github_url = models.URLField(null=True)
+    other_url = models.URLField(null=True)
+    community_respect = models.IntegerField(default = 100)  #initial value assigned when user joins
 
     def __str__(self):
         return self.username
@@ -28,6 +30,9 @@ class HashnotUser(models.Model):
     required_skills = models.TextField(null=True)
     contest_link = models.URLField(null=True)
     op_user = models.ForeignKey(Hashnot, on_delete=models.CASCADE, null=True)
+    post_score = models.IntegerField(default = 10)
+    post_reports = models.IntegerField(default = 0)
+
 
 
     
